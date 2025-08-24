@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n,i,j,k;
+    scanf("%d %d",&n,&k);
+    vector<int> a(n);
+    for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+    int l=0,h=0,ans=0;
+    map<int,int> mpp;
+    i=0,j=0;
+    while(j<n){
+        mpp[a[j]]++;
+        while(i<=j && mpp.size()>k){
+            mpp[a[i]]--;
+            if(mpp[a[i]]==0) mpp.erase(a[i]);
+            i++;
+        }
+        if(j-i+1>ans){
+            l=i;
+            h=j;
+            ans=j-i+1;
+        }
+        j++;
+    }
+    printf("%d %d",l+1,h+1);
+}
